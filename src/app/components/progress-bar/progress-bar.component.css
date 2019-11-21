@@ -1,0 +1,85 @@
+.step {
+  bottom: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  color: #CCC;
+}
+
+.step ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  counter-reset: step;
+  display: flex;
+  justify-content: center;
+}
+
+.step ul li {
+  box-sizing: border-box;
+  width: 25%;
+  text-align: center;
+  position: relative;
+  padding-top: 0px;
+}
+
+.step ul li.done {
+  color: #369;
+  cursor: pointer;
+}
+
+.step ul li:before {
+  text-align: center;
+  content: counter(step);
+  counter-increment: step;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #f9fbfd;
+  border-radius: 50%;
+  line-height: 30px;
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  transform: translateX(-50%);
+  background-color: #CCC;
+  color: #FFF;
+}
+
+.step ul li.done:before {
+  background-color: #369;
+  cursor: pointer;
+}
+
+.step ul li:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: #CCC;
+  top: 40px;
+  position: absolute;
+  z-index: -1;
+  margin-left: -50%;
+}
+
+.step ul li.done+li:after {
+  background-color: #369;
+}
+
+.step ul li:first-child:after {
+  content: none;
+}
+
+.step ul li.active:before {
+  background-color: #369;
+}
+
+.step ul li.active {
+  color: #369;
+}
+
+.step ul li.todo {
+  background-color: #ccc;
+}

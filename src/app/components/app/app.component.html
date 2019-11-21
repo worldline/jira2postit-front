@@ -1,0 +1,11 @@
+<app-overlay-loader></app-overlay-loader>
+<ul>
+    <li id="home"><a routerLink={{printingStepLink}} id="homelink"><img src="../../assets/jira2postit-logo.png" alt="site logo">Jira 2 Post-it</a></li>
+    <li><a routerLink="/get-started">Get started</a></li>
+    <li><a routerLink="/templates">Templates</a></li>
+    <li><a routerLink="/about">About</a></li>
+    <li *ngIf="authenticated()"><a routerLink="/login" (click)="logout()">Logout</a></li>
+</ul>
+<div class="content">
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,23 @@
+<div class="centered">
+  <app-progress-bar [activeStep]="step"></app-progress-bar>
+</div>
+<h1>Select tickets to print</h1>
+<h2>{{boardName}}</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="columns" >
+  <div formArrayName="sections">
+    <div *ngFor="let column of columns; let i=index" [formGroup]="sections.controls[i]">
+      <div *ngIf="column.issues.length > 0" class="section">
+        <input [id]="column.name" type="checkbox" [formControl]="sections.controls[i].get('name')">
+        <label [for]="column.name" class="section-title">{{column.name}}</label>
+        <div formArrayName="issues" class="section-items">
+          <div *ngFor="let issue of column.issues; let j=index">
+            <input [id]="issue.key" type="checkbox" [formControl]="sections.controls[i].get('issues').controls[j]">
+            <label [for]="issue.key">{{issue.key | ticketkey}} - {{issue.summary}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="form.errors?.noIssue && form.dirty">{{form.errors?.noIssue.message}}</p>
+  <button type="submit" [disabled]="form.invalid">Format tickets</button>
+</form>

@@ -1,0 +1,7 @@
+<div class="step">
+  <ul>
+    <li *ngFor="let step of steps; let i=index" [className]="activeStep.index > i ? 'done' : (activeStep.index === i ? 'active' : '')" (click)="navigate(step)">
+      {{step.name}}
+    </li>
+  </ul>
+</div>

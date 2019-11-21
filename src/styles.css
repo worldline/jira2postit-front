@@ -1,0 +1,218 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Krub");
+
+html, body {
+  overflow: visible;
+  width: 100%;
+  margin: 0;
+}
+
+/* Application-wide Styles */
+h1 {
+  color: #369;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 1.5em;
+  margin-bottom: 2.5em;
+}
+
+h2 {
+  color: #555;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 1em;
+  margin-bottom: 1.5em;
+}
+
+body, input[text], button {
+  color: #888;
+  font-family: Cambria, 'Open Sans', Georgia;
+}
+
+* {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+/* BUTTONS ============================== */
+button:focus {
+  outline: none !important;
+  border: 0;
+}
+
+button {
+  margin: 30px 65px;
+	background-color:#369;
+	border-radius: 24px;
+	border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:0.9em;
+	padding: 10px 50px;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	text-decoration:none;
+}
+
+button:hover {
+	background-color:#476e9e;
+}
+
+button:enabled:active {
+	position:relative;
+	top:1px;
+}
+
+button:disabled {
+  background-color: #555;
+}
+
+/* FORMS ============================ */
+.group {
+  box-sizing:border-box;
+  position:relative;
+  margin-bottom:45px;
+}
+
+input[type="text"], input[type="password"] {
+  box-sizing:border-box;
+  font-size:16px;
+  padding:10px 10px 10px 0px;
+  display:block;
+  width:300px;
+  border:none;
+  background: #eee;
+  border-bottom:1px solid #757575;
+  margin-left: 5px;
+}
+
+input:focus {
+	outline:none;
+}
+
+.bar + label {
+  box-sizing:border-box;
+  color:#999;
+  font-size:16px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+/* Progress bar=======================*/
+app-progress-bar {
+	min-width: 80%;
+	margin-bottom: 40px;
+	margin-top: -20px;
+}
+
+/* active state */
+input[type="text"]:focus ~ label, input[type="text"]:valid ~ label, input[type="password"]:focus ~ label, input[type="password"]:valid ~ label {
+  top:-15px;
+  font-size:16px;
+  color:#369;
+  outline: none;
+}
+
+/* bottom bar */
+.bar {
+  box-sizing:border-box;
+	position:relative;
+	display:block;
+	width:300px;
+	margin-left: 5px;
+}
+
+.bar:before, .bar:after {
+  content:'';
+  height:2px;
+  width:0;
+  bottom:0px;
+  position:absolute;
+  background:#369;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%;
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+  outline: none;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  box-sizing:border-box;
+  position:absolute;
+  height:60%;
+  width:100px;
+  top:25%;
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+  outline: none;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#369; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#369; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#369; }
+  to 	{ width:0; background:transparent; }
+}
+
+
+@media print {
+  @page {
+    width: 297mm; /* A3 size */
+    height: 420mm;
+    margin: 0mm 0mm 0mm 0mm;
+    padding: 0mm 0mm 0mm 0mm;
+  }
+
+  html {
+    margin: 0mm 0mm 0mm 0mm;
+  }
+
+  body {
+    margin: 4mm 0mm 0mm 0mm;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  html, body {
+    overflow: visible;
+    padding: 0mm;
+  }
+
+  h1, h2, h3, app-progress-bar {
+    display: none;
+  }
+
+  body, input[text], button {
+    color: black;
+  }
+}

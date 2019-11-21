@@ -1,0 +1,77 @@
+.centered-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered {
+    width: 80%;
+}
+
+.larger-image {
+    width: 90%;
+    max-width: 1100px;
+}
+
+.large-image {
+    width: 80%;
+    max-width: 800px;
+}
+
+.signin {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    left: 15px;
+    top: 65px;
+}
+
+p ~ img {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    display: block;
+}
+
+li ~ img {
+    margin: auto;
+    display: block;
+}
+
+.centered > div {
+    background-color: rgb(247, 247, 247);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 0px 15px 10px;
+}
+
+p {
+    margin: 0px;
+    font-size: 0.9em;
+}
+
+h2 {
+    font-size: 1.4em;
+    margin-bottom: 1.5em;
+    margin-top: 2.5em;
+    font-weight: 700;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+li {
+    font-size: 0.9em;
+}
+
+a {
+    font-weight: 700;
+    color: #888888;
+}
+
+a:hover {
+    color: #555;
+}

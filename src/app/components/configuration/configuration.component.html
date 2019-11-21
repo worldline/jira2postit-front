@@ -1,0 +1,111 @@
+<div class="centered">
+  <app-progress-bar [activeStep]="step"></app-progress-bar>
+</div>
+<div class="justify-space-between">
+  <div>
+    <h1>Configuration</h1>
+    <h2>Let's configure which Jira tickets to print and the space they'll take on a post-it.</h2>
+  </div>
+  <button (click)="onSkip()" [disabled]="!preExistingData">Skip</button>
+</div>
+<div>
+  <div>
+    <form [formGroup]="form">
+      <div class="form-sections">
+      <div class="form-section flex-start-column size-limited scrollbar">
+        <div class="form-section-header">
+          <div class= "number-circle">1</div>
+          <div>
+            <span class="form-section-title">Project key</span>
+            <span class="form-section-subtitle">What types of issues are configured for your board ?</span>
+          </div>
+        </div>
+        <p class="dark-grey-text project-key-section-content">
+          Let's first fetch from Jira what type of issues are configured for your board.
+          You will then be able to configure for each type, if it should be printed and
+          the space it should take on a post-it.
+          For that, you will need your project key. It is the key by which all your Jira
+          tickets start.
+        </p>
+        <div class= "column center-self project-key-section-content">
+          <div class="group">
+            <input required type="text" [(ngModel)]="projectKey" [ngModelOptions]="{standalone: true}" (change)="resetIssueTypes()" [ngClass]="{'is-invalid': submittedProjectKey && projectKey}"/>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Project key</label>
+          </div>
+          <button [disabled]="!projectKey" (click)="getIssueTypes()" id="fetch">{{ submittedProjectKey ? "Synchronize with Jira" : "Fetch" }}</button>
+        </div>
+      </div>
+      <div *ngIf="submittedProjectKey" class= "form-section size-limited scrollbar">
+          <div class="form-section-header">
+            <div class= "number-circle">2</div>
+            <div>
+              <span class="form-section-title">Types of issues to print</span>
+              <span class="form-section-subtitle">Which types of issues should be printed ?</span>
+            </div>
+          </div>
+          <div formArrayName="printables" class="dark-grey-text">
+            <div *ngFor="let group of printables.controls; let i=index" [formGroup]="printables.controls[i]">
+              <div class="checkbox-row">
+                <div>{{ group.get('name').value }}</div>
+                <div>
+                  <label class="switch">
+                    <input type="checkbox" formControlName="printable"/>
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div *ngIf="submittedProjectKey" class= "form-section size-limited scrollbar">
+        <div class="form-section-header">
+          <div class= "number-circle">3</div>
+          <div>
+            <span class="form-section-title">Post-it size</span>
+            <span class="form-section-subtitle">Which types of issues should make use of a full postit ?</span>
+          </div>
+        </div>
+        <div formArrayName="sizes" class="dark-grey-text">
+          <div *ngFor="let group of sizes.controls; let i=index" [formGroup]="sizes.controls[i]">
+            <div class="checkbox-row">
+              <div>{{ group.get('name').value }}</div>
+              <div>
+                <label class="switch">
+                  <input type="checkbox" formControlName="isFullPostit"/>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div *ngIf="submittedProjectKey" class="form-sections">
+      <div class="form-section">
+        <div class="form-section-header">
+          <div class= "number-circle">4</div>
+          <div>
+            <span class="form-section-title">Components</span>
+            <span class="form-section-subtitle">Should tickets printed on a third of a post-it be grouped by components ?</span>
+            <span class="form-section-subtitle">This can be useful in case you want to print different components on post-its of different colors.</span>
+          </div>
+        </div>
+        <div class="dark-grey-text checkbox-row">
+          <div>Group by components</div>
+          <div>
+            <label class="switch">
+              <input type="checkbox" formControlName="groupByComponents"/>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div *ngIf="submittedProjectKey" class="centered">
+          <button [disabled]='!submittedProjectKey || form.invalid ' (click)="onSubmit()">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

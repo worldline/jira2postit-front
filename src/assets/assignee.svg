@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="65 56 104.65 56 144.3 56 144.3 95.65 144.3 135.3 104.65 135.3 94.7375 135.3 65 105.5625 65 95.65"></polygon>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="79.3" height="79.3" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="US_TICKET" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="3,5">
+        <g id="A4" transform="translate(-65.000000, -56.000000)" fill-rule="nonzero" stroke="#2D2D2D" stroke-width="2">
+            <use id="Rectangle" mask="url(#mask-2)" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,317 @@
+html, body {
+    overflow: visible;
+    width: 297mm;
+  }
+
+  h1 {
+	margin-bottom: 1.5em;
+	margin-top: 0;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
+
+/*==================================================
+* Post-it dimensions
+* ===============================================*/
+.flexcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding: 0mm;
+    margin: 0mm;
+}
+
+.full-ticket {
+    background-color: white;
+    margin: 0mm 10.75mm 8mm 10.75mm;
+    padding: 3mm;
+    width: 120mm;
+    height: 70mm;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: space-between;
+}
+
+.divided-ticket {
+    background-color: white;
+    margin: 0mm 10.75mm 8mm 10.75mm;
+    padding: 0mm;
+    width: 126mm;
+    height: 76mm;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-content: space-between;
+}
+
+/*==================================================
+* Story tickets
+* ===============================================*/
+.story-header {
+    align-self: flex-start;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+
+.story-content {
+    flex: 0 6 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    border-top: 1px solid black;
+    padding-top: 3px;
+    height: 90%; /* to be deleted for timetracking at true */
+}
+
+.story-footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    height: 12.5%;
+    overflow: hidden;
+    border-top: 1px solid black;
+}
+
+.story-footer > div {
+    width: 30%;
+    display: flex;
+}
+
+.story-footer > div > img {
+    padding-top: 6px;
+}
+
+.story-footer > div > p {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 14px 0px 0px 0px;
+}
+
+.story-footer > p {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 13px 0px 0px 0px;
+}
+
+.start-date {
+    justify-content: flex-start;
+}
+
+.start-date > p {
+    padding-left: 10px;
+}
+
+.end-date {
+    justify-content: flex-end;
+}
+
+.end-date > p {
+    padding-right: 10px;
+}
+
+.story-information {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.summary {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    height: 60%;
+    font-size: 1.5em;
+    margin: 10px;
+    font-family: 'Open Sans', Arial, Cambria, Georgia;
+}
+
+.story-side {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    width: 25%;
+    overflow: hidden;
+}
+
+.story-side > img {
+    height: 28mm;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.story-side > p {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    align-self: flex-end;
+    font-size: 3.5em;
+    margin: 10px 0px;
+}
+
+.tickeykey {
+    flex: 1;
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: 600;
+    margin: -3mm 0mm 0mm 0mm;
+}
+
+.epic {
+    flex: 4;
+    padding-left: 15px;
+    border-left: 1px solid black;
+    font-size: 1.5em;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: -3mm 0mm 0mm 0mm;
+}
+
+.components {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.badge {
+    background-color: steelblue;
+    padding: 4px 8px;
+    margin: 5px;
+    border-radius: 500px;
+    color: white;
+    font-size: 0.8em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    font-family: Krub, Cambria, Georgia;
+}
+
+/*==================================================
+* Issue tickets
+* ===============================================*/
+.issue-container {
+    width: 29%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    margin: 3mm;
+    background-image: url('../../../assets/assignee.svg');
+    background-repeat: no-repeat;
+    background-size: 28mm 28mm;
+    background-position: 260% -25%;
+}
+
+.issue-container > .tickeykey {
+    border-bottom: 1px solid black;
+    height: 14%;
+    width: 17mm;
+    flex: 0;
+    text-align: left;
+    margin: -3mm 0mm 0mm 0mm;
+    padding-left: 2mm;
+    align-self: flex-start;
+}
+
+.issue-container > .summary {
+    font-size: 1em;
+    overflow: hidden;
+    margin: 1mm;
+    flex: 1;
+}
+
+.issue-container > .badge {
+    align-self: flex-start;
+    font-size: 0.6em;
+    margin: 4px 0px 0px 0px;
+}
+
+.issue-container > div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0px -2mm 0px;
+    padding-top: 1mm;
+    border-top: 1px solid black;
+}
+
+.issue-container > div > p {
+    margin: 0px;
+}
+
+.complexity {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 600;
+    margin: 3px;
+}
+
+/*==================================================
+* Printing CSS
+* ===============================================*/
+@media print {
+  .flexcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding: 0mm;
+    margin: 0mm;
+  }
+
+  .full-ticket, .divided-ticket {
+    /* post-it size: 127*76 */
+    margin: 0mm 10.75mm 8.094mm 10.75mm;
+    overflow: hidden;
+    box-shadow: inset 0mm 0mm 0mm 1mm white; /* to be removed for printing */
+  }
+
+  .badge {
+      background-color: whitesmoke;
+      color: black;
+      box-shadow: inset 0mm 0mm 0mm 1px dimgray;
+  }
+}
+
+/*==================================================
+* Shadow effect
+* ===============================================*/
+@media screen {
+  .full-ticket, .divided-ticket {
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  }
+  .full-ticket:before, .full-ticket:after, .divided-ticket:before, .divided-ticket:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    top: 50%;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    border-radius: 100px / 10px;
+  }
+  .full-ticket:after, .divided-ticket:after {
+    right: 10px;
+    left: auto;
+    transform: skew(8deg) rotate(3deg);
+  }
+}

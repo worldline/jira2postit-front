@@ -1,0 +1,59 @@
+h1 {
+	margin-bottom: 0.5em;
+}
+
+/* SprintsComponent's private CSS styles */
+.selected {
+    background-color: #CFD8DC !important;
+    color: white;
+}
+
+  .sprints {
+    margin: 3em 0 2em 5em;
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .sprints li {
+    cursor: pointer;
+    background-color: #EEE;
+    margin: 0.5em;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    justify-content: flex-start;
+    min-width: 12em;
+  }
+  .sprints li.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+  }
+  .sprints li:hover {
+    color: #369;
+    background-color: #DDD;
+    left: .1em;
+  }
+  .sprints .text {
+    line-height: 1em;
+    padding: 0.5em;
+  }
+  .sprints .badge {
+    font-size: small;
+    color: white;
+    background-color: #369;
+    line-height: 1em;
+    padding: 0.7em;
+  }
+
+  .sprints li:hover .badge {
+    background-color: rgb(86, 136, 185);
+  }
+
+  .centered {
+    display: flex;
+    justify-content: center;
+  }

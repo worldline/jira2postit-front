@@ -1,0 +1,91 @@
+/* Application-wide Styles */
+
+h1, h2, h3 {
+  color: #369;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+
+body, input[text], button {
+  color: #888;
+  font-family: Cambria, 'Open Sans', Georgia;
+}
+/* everywhere else */
+* {
+  font-family: 'Open Sans',Arial, Helvetica, sans-serif;
+}
+
+.content {
+  margin: 2em;
+}
+
+
+/* nav bar CSS */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  background-color: #333;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: 0px 1px 10px #999;
+  top: 0px;
+  width: 100%;
+  position: sticky;
+  z-index: 100;
+}
+
+#home {
+  margin-right: auto;
+}
+
+#homelink {
+  padding: 12px 16px;
+  padding-left: 100px;
+  font-size: 1.5em;
+}
+
+a > img {
+  height: auto;
+  width: auto;
+  max-width: 60px;
+  max-height: 60px;
+  position: absolute;
+  left: 30px;
+  top: 5px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: #369;
+}
+
+@media print {
+  ul {
+    display: none
+  }
+
+  .content {
+    margin: 0;
+  }
+}

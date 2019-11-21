@@ -1,0 +1,10 @@
+<div class="centered">
+  <app-progress-bar [activeStep]="step"></app-progress-bar>
+</div>
+<h1>Sprints for the board {{board.name}}</h1>
+<h2>Select the sprint to be printed</h2>
+<ul class="sprints">
+  <li *ngFor="let sprint of sprints" [class.selected]="sprint === selectedSprint" (click)="onSelect(sprint)">
+    <span class="badge">{{sprint.state}}</span><span class="text">{{sprint.name}}</span>
+  </li>
+</ul>

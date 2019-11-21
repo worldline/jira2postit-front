@@ -1,0 +1,50 @@
+<div class="centered">
+  <app-progress-bar [activeStep]="step"></app-progress-bar>
+</div>
+<h1>{{sprintName}}</h1>
+<div class="flexcontainer">
+  <div class="full-ticket" *ngFor="let issue of fullPostitIssues">
+    <div class="story-header">
+      <p class="tickeykey">{{issue.key | ticketkey}}</p>
+      <p class="epic">{{ issue.epic?(issue.epic.name | uppercase):"."}}</p>
+    </div>
+    <div class="story-content">
+      <div class="story-information">
+        <div class="components">
+          <p class="badge" *ngFor="let component of issue.components">{{component}}</p>
+        </div>
+        <p class="summary">{{issue.summary}}</p>
+      </div>
+      <div class="story-side">
+          <img src="../../assets/assignee.svg" alt="assignee photo area">
+          <p *ngIf="issue.complexity">{{issue.complexity}}</p>
+      </div>
+    </div>
+    <div *ngIf="isTimeTracked" class="story-footer">
+      <div class="start-date">
+        <img src="../../assets/begin.svg" alt="start date">
+        <p>... / ...</p>
+      </div>
+      <p>... J</p>
+      <div class="end-date">
+        <p>... / ...</p>
+        <img src="../../assets/end.svg" alt="end date">
+      </div>
+    </div>
+  </div>
+  <ng-container *ngFor="let issues of smallPostitIssues">
+    <div class="divided-ticket" *ngFor="let chunk of issues | chunks: 3; let i = index; let last = last">
+      <div class="issue-container" *ngFor="let issue of chunk">
+        <p class="tickeykey">{{issue.key | ticketkey}}</p>
+        <p class="badge" *ngFor="let component of issue.components">{{component}}</p>
+        <p class="summary">{{issue.summary}}</p>
+        <p class="complexity" *ngIf="issue.complexity">{{issue.complexity}}</p>
+        <div *ngIf="isTimeTracked">
+          <p>.../...</p>
+          <p>... J</p>
+          <p>.../...</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

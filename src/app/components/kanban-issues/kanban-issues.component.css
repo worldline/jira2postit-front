@@ -1,0 +1,92 @@
+h1 {
+  margin-bottom: 0.5em;
+  margin-top: 0;
+}
+
+h2 {
+  margin-bottom: 4em;
+}
+
+form {
+  margin-left: 60px;
+}
+
+.section-items {
+  margin: 10px 0 0 50px;
+}
+
+.section-title {
+  font-size: 1.5em;
+
+}
+
+.centered {
+	display: flex;
+	justify-content: center;
+}
+
+.section {
+  margin: 20px 0 0 0;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+input {
+    position: absolute;
+    opacity: 0;
+}
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.section > label:before {
+    width: 16px;
+    height: 16px;
+    bottom: 6px;
+}
+
+label:before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #369;
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+.section-items input:checked + label:before {
+    bottom: 8px;
+}
+
+input[type="checkbox"]:checked + label:before {
+  width: 8px;
+  bottom: 10px;
+  left: 4px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+p {
+    color: rgb(145, 41, 55);
+    font-weight: 700;
+    margin: 0px 40px 0px 0px;
+}

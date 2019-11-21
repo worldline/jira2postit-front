@@ -1,0 +1,145 @@
+<img
+  *ngIf="!authenticated()"
+  src="../../assets/signin-sign.png"
+  alt="sign in here"
+  class="signin"
+/>
+<div class="centered-container">
+  <div class="centered">
+    <h1>Getting Started Guide</h1>
+    <h2>Introduction</h2>
+    <div>
+      <p>
+        Jira 2 Post-it is an online tool that retrieves tickets from Jira and
+        formats them for printing, making it easy to add tickets to the team’s
+        physical board in 5 short steps:
+      </p>
+      <ol>
+        <li>Sign in</li>
+        <li>Choose the tickets</li>
+        <li>Stick the sticky notes on a template sheet</li>
+        <li>Print</li>
+        <li>Stick the sticky notes on the board</li>
+      </ol>
+    </div>
+    <h2>Sign in</h2>
+    <div>
+      <p>
+        Jira 2 Post-it works with your usual Jira credentials.
+      </p>
+      <ol>
+        <li>Enter your Jira username and password.</li>
+        <li>
+          The board id is easily retrievable on Jira. For that, go to Jira,
+          navigate to the board and the id is in the url under the name
+          "rapidView".
+        </li>
+      </ol>
+      <img
+        src="../../assets/boardIdExplanation.png"
+        alt="where to find the board id in the url"
+      />
+      <div *ngIf="!authenticated()" class="centered-container">
+        <button routerLink="/login">Sign in</button>
+      </div>
+    </div>
+    <h2>Printing configuration</h2>
+    <div>
+      <p>
+        Once signed in, you have the opportunity to configure what type of tasks
+        are printed on big post-its and which ones are printed on small tickets.
+        Big tickets are 127 x 76 mm post-its. Small ones are just big ones cut
+        in thirds after printing.
+      </p>
+      <img
+        src="../../assets/big-small-tickets.png"
+        alt="big and small tickets"
+      />
+      <p>
+        To configure, you'll need to enter your project key, so that Jira 2 Post-it
+        can retrieve the type of tasks configured on your project. Just like the
+        boardId, it's easily retrievable on Jira. It is the key that prefixes
+        all your ticket numbers.
+      </p>
+      <img
+        src="../../assets/projectKeyExplanation.png"
+        alt="where to find the project key"
+      />
+    </div>
+    <h2>Choose the tickets</h2>
+    <div>
+      <p>
+        Two use cases have been identified according to wether your board is a scrum board
+        or not.
+      </p>
+      <ul>
+        <li>
+          <h3>Scrum board</h3>
+          <p>
+            Most likely, you'll want to print tickets at the end of the sprint planning meeting to get your board ready for the following sprint.
+            You will be presented with the list of active and future sprints of your board. Choose the relevant one to you.
+          </p>
+        </li>
+        <li>
+          <h3>Kanban board</h3>
+          <p>
+            With those type of boards, there's no predefined moment for printing. This is why you will be presented with a list of all the tickets of the board,
+            and given the opportunity to select those to print.
+          </p>
+        </li>
+      </ul>
+    </div>
+    <h2>Prepare for printing</h2>
+    <div>
+      <p>
+        In both cases, after selecting the tickets to print, Jira 2 Post-it will generate a page representing the printable tickets. Firstly, you need to print the positioning template. You will find it in the <a routerLink="/templates">Templates</a> page.
+        It needs to be printed on an A3 page with a 100% scale. Given the size of your project, print as many positioning template pages as required.
+        To make them more durable, put some tape where the sticky part of the sticky note will be. Over time sticking and unsticking post-its damages the template sheets and the tape strenghtens them.
+      </p>
+      <ul>
+          <li>
+            <h3>Windows</h3>
+            <ol>
+                <li>Ctrl+P</li>
+                <li>Follow the below diagram to create a printing preset for Jira 2 Post-it</li>
+                <img
+                  class="large-image"
+                  src="../../assets/windows-printing.png"
+                  alt="Windows printing configuration"
+                />
+                <li>Press print but don't go to the printer just yet. There's still a bit of work to do.</li>
+              </ol>
+          </li>
+          <li>
+            <h3>MacOS</h3>
+            <ol>
+              <li>Cmd+P</li>
+              <li>Follow the below diagram to create a printing preset for Jira 2 Post-it</li>
+              <img
+                class="larger-image"
+                src="../../assets/mac-printing.png"
+                alt="MacOS printing configuration"
+              />
+              <li>Press print but don't go to the printer just yet. There's still a bit of work to do.</li>
+            </ol>
+          </li>
+        </ul>
+    </div>
+    <h2>Print</h2>
+    <div>
+      <ol>
+        <li>Grab your templates sheets, you'll need as many as the number of pages you are going to print.</li>
+        <li>Stick post-its in the black frames.</li>
+        <li>Go to the printer, position your template sheets in the rack 2 of the printer. Make sure your post-its are facing towards the top and the sticky part is on the left side.</li>
+        <img
+          class="larger-image"
+          src="../../assets/printing-steps.png"
+          alt="Printing steps"
+        />
+        <li>Print as you usually would</li>
+        <li>Stick the post-its on your board. You will need to cut in thirds some tickets if you have chosen to have some issue types printed on small tickets.</li>
+        <li>Tada 🎉🎉</li>
+      </ol>
+    </div>
+  </div>
+</div>
