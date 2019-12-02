@@ -37,7 +37,7 @@ h1 {
 .flex-container {
     display: flex;
     align-items: flex-start;
-    justify-content: start;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     flex-grow: 1;
 }
