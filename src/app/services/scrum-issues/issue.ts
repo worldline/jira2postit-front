@@ -1,14 +1,11 @@
-export class Issue {
-    key: string;
-    summary: string;
-    components: string[];
-    epic: Epic;
-    type: string;
-    column: string;
-    complexity: string;
-}
+import { Epic } from './epic'
 
-export class Epic {
-    key: string;
-    name: string;
+export interface Issue {
+    key: string
+    summary: string
+    components: string[]
+    epic: Epic
+    type: string
+    column: string
+    complexity: string
 }

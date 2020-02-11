@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LoginService } from './login/login.service';
+import { Injectable } from '@angular/core'
+import { catchError } from 'rxjs/operators'
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse } from '@angular/common/http'
+import { Observable, throwError } from 'rxjs'
+import { Router, ActivatedRoute } from '@angular/router'
+import { LoginService } from './login/login.service'
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -15,13 +15,13 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(error => {
         if (error.status === 401) {
-          this.loginService.setAuthenticated(false);
-          this.loginService.board = null;
-          return throwError(error);
+          this.loginService.setAuthenticated(false)
+          this.loginService.board = null
+          return throwError(error)
         } else {
-          return throwError(error);
+          return throwError(error)
         }
       })
-    );
+    )
   }
 }
