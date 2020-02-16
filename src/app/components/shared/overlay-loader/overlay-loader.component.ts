@@ -8,14 +8,11 @@ import { debounceTime } from 'rxjs/operators'
   templateUrl: './overlay-loader.component.html',
   styleUrls: ['./overlay-loader.component.css']
 })
-export class OverlayLoaderComponent implements OnInit, OnDestroy {
+export class OverlayLoaderComponent implements OnDestroy {
   loading = false
   loadingSubscription: Subscription
 
   constructor(private overlayLoaderService: OverlayLoaderService) {
-  }
-
-  ngOnInit() {
     this.loadingSubscription = this.overlayLoaderService.loadingStatus.pipe(
       debounceTime(200)
     ).subscribe((value) => {

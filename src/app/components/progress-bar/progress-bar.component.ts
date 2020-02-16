@@ -9,15 +9,12 @@ import { Router } from '@angular/router'
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.css']
 })
-export class ProgressBarComponent implements OnInit {
-  @Input() activeStep: Step
+export class ProgressBarComponent {
+  @Input() activeStep: Step | undefined
   steps: Step[]
   constructor(private loginService: LoginService,
-              private router: Router) { }
-
-  ngOnInit() {
-    console.log(this.loginService.board.type === BoardType.Scrum)
-    if (this.loginService.board.type === BoardType.Scrum) {
+              private router: Router) {
+    if (this.loginService.board && this.loginService.board.type === BoardType.Scrum) {
       this.steps = [Step.CONFIGURATION, Step.SPRINTS, Step.PRINTING]
     } else {
       this.steps = [Step.CONFIGURATION, Step.ISSUES, Step.PRINTING]
@@ -25,7 +22,7 @@ export class ProgressBarComponent implements OnInit {
   }
 
   navigate(step: Step) {
-    if (step.index < this.activeStep.index) {
+    if (this.activeStep && step.index < this.activeStep.index && this.loginService.board) {
       if (step === Step.CONFIGURATION) {
         this.router.navigate([`/boards/${this.loginService.board.id}/configuration`])
       } else if (step === Step.ISSUES) {

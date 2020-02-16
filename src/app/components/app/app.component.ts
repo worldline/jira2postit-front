@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators'
 
 export class AppComponent implements OnInit {
   public printingStepLink = '/login'
-  private lastPoppedUrl: string | null
+  private lastPoppedUrl: string | undefined
   private yScrollStack: number[] = []
 
   constructor(private router: Router, private loginService: LoginService, private location: Location) {
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
         } else if (ev instanceof NavigationEnd) {
             if (ev.url === this.lastPoppedUrl) {
                 this.lastPoppedUrl = undefined
-                window.scrollTo(0, this.yScrollStack.pop())
+                window.scrollTo(0, this.yScrollStack.pop() || 0)
             } else {
                 window.scrollTo(0, 0)
             }

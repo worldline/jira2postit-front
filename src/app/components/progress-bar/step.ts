@@ -11,7 +11,7 @@ export class Step {
     public static PRINTING = new Step(2, 'Printing', '/boards/:boardId/configuration')
     name: string
     link: string
-    status: StepStatus
+    status: StepStatus = StepStatus.todo
     index: number
 
     constructor(index: number, name: string, link: string) {

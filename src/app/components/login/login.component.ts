@@ -10,19 +10,17 @@ import { Subject } from 'rxjs'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
   loginForm: FormGroup
   submitted = false
-  error: string = null
+  error: string | null = null
   private unsubscribe = new Subject<void>()
 
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],

@@ -11,7 +11,7 @@
         <label [for]="column.name" class="section-title">{{column.name}}</label>
         <div formArrayName="issues" class="section-items">
           <div *ngFor="let issue of column.issues; let j=index">
-            <input [id]="issue.key" type="checkbox" [formControl]="sections.controls[i].get('issues').controls[j]">
+            <input [id]="issue.key" type="checkbox" [formControl]="sections.controls[i]['issues']['controls'][j]">
             <label [for]="issue.key">{{issue.key | ticketkey}} - {{issue.summary}}</label>
           </div>
         </div>

@@ -15,8 +15,8 @@ import { Step } from '../progress-bar/step'
 
 export class FormattedTicketsComponent implements OnInit, OnDestroy {
   sprintName: string
-  smallPostitIssues: Issue[][]
-  fullPostitIssues: Issue[]
+  smallPostitIssues: Issue[][] = []
+  fullPostitIssues: Issue[] = []
   isTimeTracked = false
   isComponentGrouped = false
   step = Step.PRINTING
@@ -26,12 +26,11 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
     private issuesService: ScrumIssuesService,
     private printingConfigurationService: PrintingConfigurationService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    this.sprintName = this.issuesService.sprint ? this.issuesService.sprint.name : ''
+  }
 
   ngOnInit() {
-    const boardId = this.route.snapshot.paramMap.get('boardId')
-    const sprintId = this.route.snapshot.paramMap.get('sprintId')
-    this.sprintName = this.issuesService.sprint ? this.issuesService.sprint.name : ''
     this.prepareIssueDatasources()
   }
 
