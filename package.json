@@ -44,7 +44,7 @@
     "protractor": "^6.0.0",
     "rxjs-tslint-rules": "^4.28.1",
     "ts-node": "~5.0.1",
-    "tslint": "^5.9.1",
-    "typescript": "^3.6.5"
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.5"
   }
 }

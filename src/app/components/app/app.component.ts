@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { Router, NavigationStart, NavigationEnd, Event as NavigationEvent } from '@angular/router'
 import { LoginService } from '../../services/login/login.service'
 import { Location, PopStateEvent } from '@angular/common'
-import { takeUntil } from 'rxjs/operators'
 
 @Component({
   selector: 'app-root',

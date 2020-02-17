@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core'
 import { SprintResponse } from './sprint-response'
 import { Observable } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { environment } from '../../../environments/environment'
+import { environment } from 'src/environments/environment'
 
 const headers = new HttpHeaders({'Content-Type':  'application/json'})
 
 const httpOptions = {
-  headers,
+  headers: headers,
   withCredentials: true
 }
 

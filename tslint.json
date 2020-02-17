@@ -245,8 +245,8 @@
   ],
   "linterOptions": {
     "exclude": [
-      "/src/**/*.spec.ts",
-      "/e2e/**",
+      "src/**/*.spec.ts",
+      "e2e/**/*.ts",
       "/src/test.ts"
     ]
   }

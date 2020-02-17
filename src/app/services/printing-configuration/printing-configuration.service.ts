@@ -9,7 +9,7 @@ import { Configuration } from './configuration'
 const headers = new HttpHeaders({'Content-Type':  'application/json'})
 
 const httpOptions = {
-  headers,
+  headers: headers,
   withCredentials: true
 }
 
