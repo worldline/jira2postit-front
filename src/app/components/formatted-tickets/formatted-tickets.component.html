@@ -4,31 +4,37 @@
 <h1>{{sprintName}}</h1>
 <div class="flexcontainer">
   <div class="full-ticket" *ngFor="let issue of fullPostitIssues">
-    <div class="story-header">
-      <p class="tickeykey">{{issue.key | ticketkey}}</p>
-      <p class="epic">{{ issue.epic?(issue.epic.name | uppercase):"."}}</p>
-    </div>
-    <div class="story-content">
-      <div class="story-information">
-        <div class="components">
-          <p class="badge" *ngFor="let component of issue.components">{{component}}</p>
+    <div>
+      <div class="story-header">
+        <p class="tickeykey">{{issue.key | ticketkey}}</p>
+        <p class="epic">{{ issue.epic?(issue.epic.name | uppercase):"."}}</p>
+      </div>
+      <div class="story-content">
+        <div class="story-information">
+          <div class="components">
+            <p class="badge" *ngFor="let component of issue.components">{{component}}</p>
+          </div>
+          <p class="summary">{{issue.summary}}</p>
         </div>
-        <p class="summary">{{issue.summary}}</p>
+        <div class="story-side">
+            <img src="../../assets/assignee.svg" alt="assignee photo area">
+            <p *ngIf="issue.complexity">{{issue.complexity}}</p>
+        </div>
       </div>
-      <div class="story-side">
-          <img src="../../assets/assignee.svg" alt="assignee photo area">
-          <p *ngIf="issue.complexity">{{issue.complexity}}</p>
+      <div *ngIf="isTimeTracked" class="story-footer">
+        <div class="start-date">
+          <img src="../../assets/begin.svg" alt="start date">
+          <p>... / ...</p>
+        </div>
+        <p>... J</p>
+        <div class="end-date">
+          <p>... / ...</p>
+          <img src="../../assets/end.svg" alt="end date">
+        </div>
       </div>
-    </div>
-    <div *ngIf="isTimeTracked" class="story-footer">
-      <div class="start-date">
-        <img src="../../assets/begin.svg" alt="start date">
-        <p>... / ...</p>
-      </div>
-      <p>... J</p>
-      <div class="end-date">
-        <p>... / ...</p>
-        <img src="../../assets/end.svg" alt="end date">
+      <div class="overlay">
+        <div class="overlay-background"></div>
+        <img src="../../assets/pencil-black.svg">
       </div>
     </div>
   </div>

@@ -30,11 +30,11 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
     this.sprintName = this.issuesService.sprint ? this.issuesService.sprint.name : ''
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.prepareIssueDatasources()
   }
 
-  prepareIssueDatasources() {
+  prepareIssueDatasources(): void {
     this.printingConfigurationService.getToPrintIssues()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(issues => {
@@ -64,6 +64,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
         return 1
       }
     })
+
     return sortedIssues
   }
 
@@ -76,6 +77,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
     })
     const issuesWithoutComponent = issues.filter(issue => issue.components.length === 0)
     groupedIssuesByComponent.push(issuesWithoutComponent)
+
     return groupedIssuesByComponent
   }
 
@@ -85,6 +87,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
     issues.forEach(element => {
       components.push(...element.components)
     })
+
     return components
       .filter((value, index, array) => index === array.indexOf(value))
       .sort((left, right) => {
@@ -98,6 +101,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
     issues.forEach(element => {
       types.push(element.type)
     })
+
     return types
       .filter((value, index, array) => index === array.indexOf(value))
       .sort((left, right) => {
@@ -113,7 +117,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
       })
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribe.next()
     this.unsubscribe.complete()
   }

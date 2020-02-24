@@ -218,7 +218,7 @@ p {
     background-position: 260% -25%;
 }
 
-.issue-container > .tickeykey {
+.issue-container .tickeykey {
     border-bottom: 1px solid black;
     height: 14%;
     width: 17mm;
@@ -229,20 +229,20 @@ p {
     align-self: flex-start;
 }
 
-.issue-container > .summary {
+.issue-container .summary {
     font-size: 1em;
     overflow: hidden;
     margin: 1mm;
     flex: 1;
 }
 
-.issue-container > .badge {
+.issue-container .badge {
     align-self: flex-start;
     font-size: 0.6em;
     margin: 4px 0px 0px 0px;
 }
 
-.issue-container > div {
+.issue-container div {
     display: flex;
     justify-content: space-between;
     margin: 0px 0px -2mm 0px;
@@ -250,7 +250,7 @@ p {
     border-top: 1px solid black;
 }
 
-.issue-container > div > p {
+.issue-container div > p {
     margin: 0px;
 }
 
@@ -290,10 +290,10 @@ p {
   }
 }
 
+@media screen {
 /*==================================================
 * Shadow effect
 * ===============================================*/
-@media screen {
   .full-ticket, .divided-ticket {
     position: relative;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -314,4 +314,54 @@ p {
     left: auto;
     transform: skew(8deg) rotate(3deg);
   }
+
+/*==================================================
+* Hover effect
+* ===============================================*/
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 3px;
+    }
+
+    .overlay-background {
+        opacity: 0;
+        transition: .3s ease;
+        background-color: black;
+        height: 100%;
+        width: 100%;
+        border-radius: 3px;
+    }
+
+    .full-ticket:hover {
+        cursor: pointer;
+    }
+
+    .full-ticket:hover .overlay div {
+        opacity: 0.35;
+        
+    }
+
+    .full-ticket:hover .overlay img {
+        opacity: 1;
+        transition: .3s ease;
+    }
+
+    .overlay img {
+        opacity: 0;
+        filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(319deg) brightness(105%) contrast(110%);
+        width: 160px;
+        height: 160px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
 }
