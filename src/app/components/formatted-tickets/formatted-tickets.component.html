@@ -37,6 +37,8 @@
         <img src="../../assets/pencil-black.svg">
       </div>
     </div>
+    <button class="btn">.</button>
+    <button class="btn btn2">.</button>
   </div>
   <ng-container *ngFor="let issues of smallPostitIssues">
     <div class="divided-ticket" *ngFor="let chunk of issues | chunks: 3; let i = index; let last = last">

@@ -33,7 +33,6 @@ html, body {
     padding: 3mm;
     width: 120mm;
     height: 70mm;
-    overflow: hidden;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -47,7 +46,6 @@ html, body {
     padding: 0mm;
     width: 126mm;
     height: 76mm;
-    overflow: hidden;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -299,7 +297,7 @@ p {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
   .full-ticket:before, .full-ticket:after, .divided-ticket:before, .divided-ticket:after {
-    content: "";
+/*     content: "";
     position: absolute;
     z-index: -1;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
@@ -307,7 +305,7 @@ p {
     bottom: 0;
     left: 10px;
     right: 10px;
-    border-radius: 100px / 10px;
+    border-radius: 100px / 10px; */
   }
   .full-ticket:after, .divided-ticket:after {
     right: 10px;
@@ -363,5 +361,45 @@ p {
         transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         text-align: center;
+    }
+
+/*==================================================
+* Edition styling
+* ===============================================*/
+    .btn {
+        display: inline-block;
+        position: absolute;
+        text-decoration: none;
+        bottom: -20px;
+        right: 60px;
+        background: #ff8181;
+        color: #FFF;
+        width: 40px;
+        height: 40px;
+        line-height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: middle;
+        overflow: hidden;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.29);
+        border-bottom: solid 3px #bd6565;
+        transition: .4s;
+        margin: 0;
+        padding: 0;
+    }
+
+    .btn2 {
+        right:100px;
+    }
+    
+    .btn:active {
+        top: none;
+        position: absolute;
+        -ms-transform: translateY(2px);
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+        border-bottom: none;
     }
 }
