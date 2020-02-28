@@ -4,6 +4,8 @@ import { Observable } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 import { Board } from './board'
+import { BoardService } from '../board/board.service'
+import { tap } from 'rxjs/operators'
 
 const headers = new HttpHeaders({'Content-Type':  'application/json'})
 
@@ -19,7 +21,8 @@ export class LoginService {
   private loginUrl = 'login/'
   public board: Board | null = null
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private boardService: BoardService) { }
 
   login(username: string, password: string, id: string): Observable<Board> {
     const login: Login = {
@@ -27,19 +30,21 @@ export class LoginService {
       username,
       password
     }
+    this.boardService.boardId = id
 
     return this.http.post<Board>(environment.baseUrl + this.loginUrl, login, httpOptions)
+      .pipe(tap(val => this.boardService.board.next(val)))
   }
 
   logout(): Observable<void> {
-    sessionStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('isAuthenticated')
     this.board = null
 
     return this.http.get<void>(environment.baseUrl + 'logout', httpOptions)
   }
 
   getAuthenticated(): boolean {
-    const isAuthenticated = sessionStorage.getItem('isAuthenticated')
+    const isAuthenticated = localStorage.getItem('isAuthenticated')
     if (isAuthenticated !== null) {
       return Boolean(JSON.parse(isAuthenticated))
     }
@@ -48,6 +53,6 @@ export class LoginService {
   }
 
   setAuthenticated(isAuthenticated: boolean): void {
-    sessionStorage.setItem('isAuthenticated', `${isAuthenticated}`)
+    localStorage.setItem('isAuthenticated', `${isAuthenticated}`)
   }
 }
