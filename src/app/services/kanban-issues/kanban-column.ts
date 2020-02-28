@@ -1,6 +1,6 @@
-import { Issue } from '../scrum-issues/issue';
+import { Issue } from '../scrum-issues/issue'
 
-export class KanbanColumn {
-    name: string;
-    issues: Issue[];
+export interface KanbanColumn {
+    name: string
+    issues: Issue[]
 }

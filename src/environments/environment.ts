@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'https://localhost:8000/'
-};
+}
 
 /*
  * In development mode, to ignore zone related error stack frames such as

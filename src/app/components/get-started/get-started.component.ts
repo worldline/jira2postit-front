@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../services/login/login.service';
+import { Component, OnInit } from '@angular/core'
+import { LoginService } from '../../services/login/login.service'
 
 @Component({
   selector: 'app-get-started',
@@ -14,6 +14,6 @@ export class GetStartedComponent implements OnInit {
   }
 
   authenticated(): boolean {
-    return this.loginService.getAuthenticated();
+    return this.loginService.getAuthenticated()
   }
 }

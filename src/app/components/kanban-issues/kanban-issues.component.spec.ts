@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { KanbanIssuesComponent } from './kanban-issues.component';
+import { KanbanIssuesComponent } from './kanban-issues.component'
 
 describe('KanbanIssuesComponent', () => {
-  let component: KanbanIssuesComponent;
-  let fixture: ComponentFixture<KanbanIssuesComponent>;
+  let component: KanbanIssuesComponent
+  let fixture: ComponentFixture<KanbanIssuesComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ KanbanIssuesComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KanbanIssuesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(KanbanIssuesComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})
