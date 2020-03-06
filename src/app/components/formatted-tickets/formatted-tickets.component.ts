@@ -20,6 +20,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
   isTimeTracked = false
   isComponentGrouped = false
   step = Step.PRINTING
+  fullTicketInEdition: number | null = null
   private unsubscribe = new Subject<void>()
 
   constructor(
@@ -115,6 +116,15 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
           return 0
         }
       })
+  }
+
+  //Edition mode
+  enterFullTicketEditionMode(index: number) {
+    this.fullTicketInEdition = index
+  }
+
+  exitFullTicketEditionMode() {
+    this.fullTicketInEdition = null
   }
 
   ngOnDestroy(): void {

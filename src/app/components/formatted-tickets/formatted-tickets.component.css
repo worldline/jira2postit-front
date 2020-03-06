@@ -341,8 +341,7 @@ p {
     }
 
     .full-ticket:hover .overlay div {
-        opacity: 0.35;
-        
+        animation: 0.3s fadein both
     }
 
     .full-ticket:hover .overlay img {
@@ -366,13 +365,13 @@ p {
 /*==================================================
 * Edition styling
 * ===============================================*/
-    .btn {
+    .card-round-button {
         display: inline-block;
         position: absolute;
         text-decoration: none;
         bottom: -20px;
-        right: 60px;
-        background: #ff8181;
+        right: 80px;
+        background: #336699;
         color: #FFF;
         width: 40px;
         height: 40px;
@@ -383,17 +382,20 @@ p {
         vertical-align: middle;
         overflow: hidden;
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.29);
-        border-bottom: solid 3px #bd6565;
+        border-width: 0;
+        border-bottom: solid 3px #193d61;
         transition: .4s;
         margin: 0;
         padding: 0;
     }
 
-    .btn2 {
-        right:100px;
+    .card-cancel-button {
+        right:130px;
+        background: #888888;
+        border-bottom: solid 3px #333333;
     }
     
-    .btn:active {
+    .card-round-button:active {
         top: none;
         position: absolute;
         -ms-transform: translateY(2px);
@@ -401,5 +403,18 @@ p {
         transform: translateY(2px);
         box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
         border-bottom: none;
+    }
+
+    .card-round-button:hover {
+        box-shadow: inset 10px 10px 40px 5px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadein {
+        from { opacity: 0; }
+        to { opacity: 0.35; }
+    }
+
+    .permanent-opacity {
+        animation: 0.3s fadein both;
     }
 }

@@ -19,5 +19,5 @@
     </div>
   </div>
   <p *ngIf="form.errors?.noIssue && form.dirty">{{form.errors?.noIssue.message}}</p>
-  <button type="submit" [disabled]="form.invalid">Format tickets</button>
+  <button type="submit" [disabled]="form.invalid" class="regular-button">Format tickets</button>
 </form>
