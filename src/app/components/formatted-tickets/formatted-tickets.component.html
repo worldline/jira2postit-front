@@ -4,44 +4,8 @@
 <h1>{{sprintName}}</h1>
 <div class="flexcontainer">
   <div class="full-ticket" *ngFor="let issue of fullPostitIssues; index as i">
-    <div>
-      <div class="story-header">
-        <p class="tickeykey">{{issue.key | ticketkey}}</p>
-        <p class="epic">{{ issue.epic?(issue.epic.name | uppercase):"."}}</p>
-      </div>
-      <div class="story-content">
-        <div class="story-information">
-          <div class="components">
-            <p class="badge" *ngFor="let component of issue.components">{{component}}</p>
-          </div>
-          <p class="summary">{{issue.summary}}</p>
-        </div>
-        <div class="story-side">
-            <img src="../../assets/assignee.svg" alt="assignee photo area">
-            <p *ngIf="issue.complexity">{{issue.complexity}}</p>
-        </div>
-      </div>
-      <div *ngIf="isTimeTracked" class="story-footer">
-        <div class="start-date">
-          <img src="../../assets/begin.svg" alt="start date">
-          <p>... / ...</p>
-        </div>
-        <p>... J</p>
-        <div class="end-date">
-          <p>... / ...</p>
-          <img src="../../assets/end.svg" alt="end date">
-        </div>
-      </div>
-      <div *ngIf="!fullTicketInEdition && fullTicketInEdition !== 0" class="overlay" (click)="enterFullTicketEditionMode(i)">
-        <div class="overlay-background"></div>
-        <img src="../../assets/pencil-black.svg">
-      </div>
-      <div *ngIf="fullTicketInEdition !== null && fullTicketInEdition !== i" class="overlay">
-        <div class="overlay-background permanent-opacity"></div>
-      </div>
-    </div>
-    <button *ngIf="fullTicketInEdition === i" class="card-round-button">&#10003;</button>
-    <button *ngIf="fullTicketInEdition === i" (click)="exitFullTicketEditionMode()" class="card-round-button card-cancel-button">&#10008;</button>
+      <ng-container *ngTemplateOutlet="(fullTicketInEdition !== i) ? fullticket : fullticketform; context: { $implicit: i }">
+      </ng-container>
   </div>
   <ng-container *ngFor="let issues of smallPostitIssues">
     <div class="divided-ticket" *ngFor="let chunk of issues | chunks: 3; let i = index; let last = last">
@@ -59,3 +23,65 @@
     </div>
   </ng-container>
 </div>
+
+<ng-template #fullticket let-i>
+  <div>
+    <div class="story-header">
+      <p class="tickeykey">{{fullPostitIssues[i].key | ticketkey}}</p>
+      <p class="epic">{{ fullPostitIssues[i].epic?(fullPostitIssues[i].epic?.name | uppercase):"."}}</p>
+    </div>
+    <div class="story-content">
+      <div class="story-information">
+        <div class="components">
+          <p class="badge" *ngFor="let component of fullPostitIssues[i].components">{{component}}</p>
+        </div>
+        <p class="summary">{{fullPostitIssues[i].summary}}</p>
+      </div>
+      <div class="story-side">
+          <img src="../../assets/assignee.svg" alt="assignee photo area">
+          <p *ngIf="fullPostitIssues[i].complexity">{{fullPostitIssues[i].complexity}}</p>
+      </div>
+    </div>
+    <div *ngIf="isTimeTracked" class="story-footer">
+      <div class="start-date">
+        <img src="../../assets/begin.svg" alt="start date">
+        <p>... / ...</p>
+      </div>
+      <p>... J</p>
+      <div class="end-date">
+        <p>... / ...</p>
+        <img src="../../assets/end.svg" alt="end date">
+      </div>
+    </div>
+    <div *ngIf="!fullTicketInEdition && fullTicketInEdition !== 0" class="overlay" (click)="enterFullTicketEditionMode(i)">
+      <div class="overlay-background"></div>
+      <img src="../../assets/pencil-black.svg">
+    </div>
+    <div *ngIf="fullTicketInEdition !== null" class="overlay">
+      <div class="overlay-background permanent-opacity"></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #fullticketform>
+  <form [formGroup]="fullTicketForm" (ngSubmit)="onFullTicketSubmit()" *ngIf="fullTicketInEdition != null">
+    <div class="story-header">
+      <p class="tickeykey">{{fullPostitIssues[fullTicketInEdition].key | ticketkey}}</p>
+      <input class="epic" formControlName="epic">
+    </div>
+    <div class="story-content">
+      <div class="story-information">
+        <div class="components">
+          <p class="badge" *ngFor="let component of fullPostitIssues[fullTicketInEdition].components">{{component}}</p>
+        </div>
+        <textarea class="summary" formControlName="summary"></textarea>
+      </div>
+      <div class="story-side">
+          <img src="../../assets/assignee.svg" alt="assignee photo area">
+          <input formControlName="complexity">
+      </div>
+    </div>
+    <button type="button" (click)="exitFullTicketEditionMode()" class="card-round-button card-cancel-button">&#10008;</button>
+    <button class="card-round-button" type="submit">&#10003;</button>
+  </form>
+</ng-template>

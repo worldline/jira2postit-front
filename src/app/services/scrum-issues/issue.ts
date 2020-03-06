@@ -4,7 +4,7 @@ export interface Issue {
     key: string
     summary: string
     components: string[]
-    epic: Epic
+    epic: Epic | undefined
     type: string
     column: string
     complexity: string
