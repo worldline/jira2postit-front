@@ -4,12 +4,12 @@ import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms'
 import { IssueTypesService } from '../../services/issue-type/issue-types.service'
 import { LoginService } from '../../services/login/login.service'
 import { PrintingConfigurationService } from '../../services/printing-configuration/printing-configuration.service'
-import { IssueType } from '../../services/issue-type/issue-type'
-import { BoardType } from '../../services/login/board'
+import { BoardType, Board } from '../../services/login/board'
 import { Subscription, Subject } from 'rxjs'
 import { IssueTypeConfiguration, PrintingSize, Configuration } from '../../services/printing-configuration/configuration'
-import { takeUntil } from 'rxjs/operators'
+import { takeUntil, filter } from 'rxjs/operators'
 import { Step } from '../progress-bar/step'
+import { BoardService } from 'src/app/services/board/board.service'
 
 @Component({
   selector: 'app-configuration',
@@ -34,7 +34,8 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     private printingConfigurationService: PrintingConfigurationService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private boardService: BoardService
   ) {
     this.form = this.formBuilder.group({
       printables: this.formBuilder.array([]),
@@ -193,8 +194,12 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
   }
 
   navigateToIssueSelection(): void {
-    if (this.loginService.board) {
-      switch (this.loginService.board.type) {
+    this.boardService.getBoard(this.boardId)
+    this.boardService.board.pipe(
+      filter(val => val != null),
+      takeUntil(this.unsubscribe)
+    ).subscribe(board => {
+      switch (board?.type) {
         case BoardType.Scrum: {
           this.router.navigate([`/boards/${this.boardId}/sprints`])
           break
@@ -205,11 +210,10 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
         }
         default:
           console.log('Board type is not recognized')
+          this.router.navigate([`/login`])
           break
       }
-    } else {
-      this.router.navigate([`/login`])
-    }
+    })
   }
 
   onSkip(): void {
