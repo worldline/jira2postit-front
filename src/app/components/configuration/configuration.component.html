@@ -6,7 +6,7 @@
     <h1>Configuration</h1>
     <h2>Let's configure which Jira tickets to print and the space they'll take on a post-it.</h2>
   </div>
-  <button (click)="onSkip()" [disabled]="!preExistingData">Skip</button>
+  <button (click)="onSkip()" [disabled]="!preExistingData" class="regular-button">Skip</button>
 </div>
 <div>
   <div>
@@ -34,7 +34,7 @@
             <span class="bar"></span>
             <label>Project key</label>
           </div>
-          <button [disabled]="!projectKey" (click)="getIssueTypes()" id="fetch">{{ submittedProjectKey ? "Synchronize with Jira" : "Fetch" }}</button>
+          <button [disabled]="!projectKey" (click)="getIssueTypes()" id="fetch" class="regular-button">{{ submittedProjectKey ? "Synchronize with Jira" : "Fetch" }}</button>
         </div>
       </div>
       <div *ngIf="submittedProjectKey" class= "form-section size-limited scrollbar">
@@ -104,7 +104,7 @@
       </div>
       </div>
       <div *ngIf="submittedProjectKey" class="centered">
-          <button [disabled]='!submittedProjectKey || form.invalid ' (click)="onSubmit()">Save</button>
+          <button [disabled]='!submittedProjectKey || form.invalid' (click)="onSubmit()" class="regular-button">Save</button>
       </div>
     </form>
   </div>

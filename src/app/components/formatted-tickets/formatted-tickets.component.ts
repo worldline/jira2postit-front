@@ -6,6 +6,8 @@ import { PrintingConfigurationService } from '../../services/printing-configurat
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 import { Step } from '../progress-bar/step'
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms'
+import { Epic } from 'src/app/services/scrum-issues/epic'
 
 @Component({
   selector: 'app-formatted-tickets',
@@ -20,21 +22,29 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
   isTimeTracked = false
   isComponentGrouped = false
   step = Step.PRINTING
+  fullTicketInEdition: number | null = null
+  fullTicketForm: FormGroup
   private unsubscribe = new Subject<void>()
 
   constructor(
     private issuesService: ScrumIssuesService,
     private printingConfigurationService: PrintingConfigurationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) {
     this.sprintName = this.issuesService.sprint ? this.issuesService.sprint.name : ''
+    this.fullTicketForm = this.formBuilder.group({
+      epic: [''],
+      summary: [''],
+      complexity: ['']
+    })
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.prepareIssueDatasources()
   }
 
-  prepareIssueDatasources() {
+  prepareIssueDatasources(): void {
     this.printingConfigurationService.getToPrintIssues()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(issues => {
@@ -64,6 +74,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
         return 1
       }
     })
+
     return sortedIssues
   }
 
@@ -76,6 +87,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
     })
     const issuesWithoutComponent = issues.filter(issue => issue.components.length === 0)
     groupedIssuesByComponent.push(issuesWithoutComponent)
+
     return groupedIssuesByComponent
   }
 
@@ -85,6 +97,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
     issues.forEach(element => {
       components.push(...element.components)
     })
+
     return components
       .filter((value, index, array) => index === array.indexOf(value))
       .sort((left, right) => {
@@ -98,6 +111,7 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
     issues.forEach(element => {
       types.push(element.type)
     })
+
     return types
       .filter((value, index, array) => index === array.indexOf(value))
       .sort((left, right) => {
@@ -113,7 +127,38 @@ export class FormattedTicketsComponent implements OnInit, OnDestroy {
       })
   }
 
-  ngOnDestroy() {
+  //Edition mode
+  enterFullTicketEditionMode(index: number) {
+    this.fullTicketInEdition = index
+    this.fullTicketForm.get('epic')?.patchValue(this.fullPostitIssues[index].epic?.name)
+    this.fullTicketForm.get('complexity')?.patchValue(this.fullPostitIssues[index].complexity)
+    this.fullTicketForm.get('summary')?.patchValue(this.fullPostitIssues[index].summary)
+  }
+
+  exitFullTicketEditionMode() {
+    this.fullTicketInEdition = null
+    this.fullTicketForm.reset()
+  }
+
+  onFullTicketSubmit() {
+    if (this.fullTicketInEdition !== null) {
+      var modifiedIssue = this.fullPostitIssues[this.fullTicketInEdition]
+      modifiedIssue.complexity = this.fullTicketForm.get('complexity')?.value
+      var modifiedEpicName = this.fullTicketForm.get('epic')?.value
+      var epic: Epic
+      if (modifiedEpicName != null) {
+        epic = new Epic('', modifiedEpicName)
+      } else {
+        epic = new Epic('', '.')
+      }
+      modifiedIssue.epic = epic
+      modifiedIssue.summary = this.fullTicketForm.get('summary')?.value
+      this.fullPostitIssues[this.fullTicketInEdition] = modifiedIssue
+      this.fullTicketInEdition = null
+    }
+  }
+
+  ngOnDestroy(): void {
     this.unsubscribe.next()
     this.unsubscribe.complete()
   }

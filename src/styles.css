@@ -36,10 +36,13 @@ body, input[text], button {
 /* BUTTONS ============================== */
 button:focus {
   outline: none !important;
+}
+
+.regular-button:focus {
   border: 0;
 }
 
-button {
+.regular-button {
   margin: 30px 65px;
 	background-color:#369;
 	border-radius: 24px;
@@ -53,16 +56,16 @@ button {
 	text-decoration:none;
 }
 
-button:hover {
+.regular-button:hover {
 	background-color:#476e9e;
 }
 
-button:enabled:active {
+.regular-button:enabled:active {
 	position:relative;
 	top:1px;
 }
 
-button:disabled {
+.regular-button:disabled {
   background-color: #555;
 }
 

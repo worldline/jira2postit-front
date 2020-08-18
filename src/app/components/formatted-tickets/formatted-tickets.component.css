@@ -33,7 +33,6 @@ html, body {
     padding: 3mm;
     width: 120mm;
     height: 70mm;
-    overflow: hidden;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -47,7 +46,6 @@ html, body {
     padding: 0mm;
     width: 126mm;
     height: 76mm;
-    overflow: hidden;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -218,7 +216,7 @@ p {
     background-position: 260% -25%;
 }
 
-.issue-container > .tickeykey {
+.issue-container .tickeykey {
     border-bottom: 1px solid black;
     height: 14%;
     width: 17mm;
@@ -229,20 +227,20 @@ p {
     align-self: flex-start;
 }
 
-.issue-container > .summary {
+.issue-container .summary {
     font-size: 1em;
     overflow: hidden;
     margin: 1mm;
     flex: 1;
 }
 
-.issue-container > .badge {
+.issue-container .badge {
     align-self: flex-start;
     font-size: 0.6em;
     margin: 4px 0px 0px 0px;
 }
 
-.issue-container > div {
+.issue-container div {
     display: flex;
     justify-content: space-between;
     margin: 0px 0px -2mm 0px;
@@ -250,7 +248,7 @@ p {
     border-top: 1px solid black;
 }
 
-.issue-container > div > p {
+.issue-container div > p {
     margin: 0px;
 }
 
@@ -290,16 +288,16 @@ p {
   }
 }
 
+@media screen {
 /*==================================================
 * Shadow effect
 * ===============================================*/
-@media screen {
   .full-ticket, .divided-ticket {
     position: relative;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
   .full-ticket:before, .full-ticket:after, .divided-ticket:before, .divided-ticket:after {
-    content: "";
+/*     content: "";
     position: absolute;
     z-index: -1;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
@@ -307,11 +305,116 @@ p {
     bottom: 0;
     left: 10px;
     right: 10px;
-    border-radius: 100px / 10px;
+    border-radius: 100px / 10px; */
   }
   .full-ticket:after, .divided-ticket:after {
     right: 10px;
     left: auto;
     transform: skew(8deg) rotate(3deg);
   }
+
+/*==================================================
+* Hover effect
+* ===============================================*/
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 3px;
+    }
+
+    .overlay-background {
+        opacity: 0;
+        transition: .3s ease;
+        background-color: black;
+        height: 100%;
+        width: 100%;
+        border-radius: 3px;
+    }
+
+    .full-ticket:hover {
+        cursor: pointer;
+    }
+
+    .full-ticket:hover .overlay div {
+        animation: 0.3s fadein both
+    }
+
+    .full-ticket:hover .overlay img {
+        opacity: 1;
+        transition: .3s ease;
+    }
+
+    .overlay img {
+        opacity: 0;
+        filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(319deg) brightness(105%) contrast(110%);
+        width: 160px;
+        height: 160px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+/*==================================================
+* Edition styling
+* ===============================================*/
+    .card-round-button {
+        display: inline-block;
+        position: absolute;
+        text-decoration: none;
+        bottom: -20px;
+        right: 80px;
+        background: #336699;
+        color: #FFF;
+        width: 40px;
+        height: 40px;
+        line-height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: middle;
+        overflow: hidden;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.29);
+        border-width: 0;
+        border-bottom: solid 3px #193d61;
+        transition: .4s;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card-cancel-button {
+        right:130px;
+        background: #888888;
+        border-bottom: solid 3px #333333;
+    }
+    
+    .card-round-button:active {
+        top: none;
+        position: absolute;
+        -ms-transform: translateY(2px);
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+        border-bottom: none;
+    }
+
+    .card-round-button:hover {
+        box-shadow: inset 10px 10px 40px 5px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadein {
+        from { opacity: 0; }
+        to { opacity: 0.35; }
+    }
+
+    .permanent-opacity {
+        animation: 0.3s fadein both;
+    }
 }
