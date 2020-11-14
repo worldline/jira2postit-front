@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { OverlayLoaderService } from '../../../services/overlay-loader/overlay-loader.service'
+import { OverlayLoaderService } from '@services/overlay-loader/overlay-loader.service'
 import { Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 

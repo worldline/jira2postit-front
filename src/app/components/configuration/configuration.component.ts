@@ -1,15 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms'
-import { IssueTypesService } from '../../services/issue-type/issue-types.service'
-import { LoginService } from '../../services/login/login.service'
-import { PrintingConfigurationService } from '../../services/printing-configuration/printing-configuration.service'
-import { BoardType, Board } from '../../services/login/board'
+import { IssueTypesService } from '@services/issue-type/issue-types.service'
+import { PrintingConfigurationService } from '@services/printing-configuration/printing-configuration.service'
+import { BoardType, Board } from '@services/login/board'
 import { Subscription, Subject } from 'rxjs'
-import { IssueTypeConfiguration, PrintingSize, Configuration } from '../../services/printing-configuration/configuration'
+import { IssueTypeConfiguration, PrintingSize, Configuration } from '@services/printing-configuration/configuration'
 import { takeUntil, filter } from 'rxjs/operators'
 import { Step } from '../progress-bar/step'
-import { BoardService } from 'src/app/services/board/board.service'
+import { BoardService } from '@services/board/board.service'
 
 @Component({
   selector: 'app-configuration',
@@ -30,7 +29,6 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
 
   constructor(
     private issueTypesService: IssueTypesService,
-    private loginService: LoginService,
     private printingConfigurationService: PrintingConfigurationService,
     private route: ActivatedRoute,
     private router: Router,

@@ -19,7 +19,10 @@
     "lib": [
       "es2019",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@services/*": ["src/app/services/*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -3,7 +3,7 @@
   "rules": {
     "align": [
       true,
-      "parameters", 
+      "parameters",
       "statements"
     ],
     "array-type": [true, "array"],
@@ -14,7 +14,7 @@
     },
     "class-name": true,
     "comment-format": [
-      true, 
+      true,
       "check-space"
     ],
     "component-class-suffix": true,
@@ -86,8 +86,12 @@
     "no-for-in-array": true,
     "no-implicit-dependencies": [
       true,
-      "dev",
-      "optional"],
+      [
+        "dev",
+        "optional",
+        "@services"
+      ]
+    ],
     "no-inferrable-types": [
       true,
       "ignore-params"
@@ -145,9 +149,8 @@
     ],
     "semicolon": [true, "never"],
     "typedef": [
-      true, 
+      true,
       "call-signature",
-      "arrow-call-signature",
       "parameter",
       "property-declaration",
       "variable-declaration-ignore-function",

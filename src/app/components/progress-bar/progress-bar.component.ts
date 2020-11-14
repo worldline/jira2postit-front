@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Step } from './step'
-import { LoginService } from '../../services/login/login.service'
-import { BoardType } from '../../services/login/board'
+import { LoginService } from '@services/login/login.service'
+import { BoardType } from '@services/login/board'
 import { Router } from '@angular/router'
 
 @Component({
