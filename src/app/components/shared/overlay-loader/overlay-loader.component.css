@@ -1,17 +1,17 @@
 .loading-screen-wrapper {
-    z-index: 100000;
-    position: absolute;
+    z-index: 100;
+    position: fixed;
     background-color: rgba(255, 255, 255, 0.6);
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    display: block;
   }
 
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 70px;
-    max-height: 70px;
-  }
+img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  max-width: 70px;
+  max-height: 70px;
+}

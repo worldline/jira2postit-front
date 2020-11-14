@@ -15,8 +15,8 @@ export class OverlayLoaderInterceptor implements HttpInterceptor {
     if (this.activeRequests === 0) {
       this.overlayLoaderService.startLoading()
     }
-
     this.activeRequests++
+
     return next.handle(request).pipe(
       finalize(() => {
         this.activeRequests--
