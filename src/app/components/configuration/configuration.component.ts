@@ -59,6 +59,9 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(configuration => {
         if (configuration) {
+          this.projectKey = configuration.projectKey
+          this.submittedProjectKey = true
+          this.configuration = configuration
           this.populateForm(configuration)
           this.preExistingData = true
         }
@@ -89,8 +92,8 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
             const newConfiguration = new Configuration(this.projectKey, issueTypeConfigurations, groupByComponents)
             this.populateForm(newConfiguration)
             this.configuration = newConfiguration
+            this.submittedProjectKey = true
           }
-          this.submittedProjectKey = true
         }, (error: string) => {
           this.error = error
         })
@@ -101,18 +104,11 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     this.submittedProjectKey = false
     this.configuration = null
     this.printableSubscriptions.forEach(s => s.unsubscribe())
-    while (this.printables.length > 0) { // TODO: use this.shouldPrint.clear(); after migration to angular 8
-      this.printables.removeAt(0)
-    }
-    while (this.sizes.length > 0) { // TODO: use this.sizes.clear(); after migration to angular 8
-      this.sizes.removeAt(0)
-    }
+    this.printables.clear()
+    this.sizes.clear()
   }
 
   populateForm(configuration: Configuration): void {
-    this.projectKey = configuration.projectKey
-    this.submittedProjectKey = true
-    this.configuration = configuration
     this.groupByComponents.patchValue(configuration.groupByComponents)
     configuration.issueTypes.forEach(typeConfig => {
       this.printables.push(this.formBuilder.group({
@@ -121,13 +117,13 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
       }))
       this.sizes.push(this.formBuilder.group({
         name: typeConfig.type.name,
-        isFullPostit: {value: typeConfig.pritingSize === PrintingSize.Full, disabled: !typeConfig.toPrint}
+        isFullPostit: { value: typeConfig.pritingSize === PrintingSize.Full, disabled: !typeConfig.toPrint}
       }))
     })
-    this.onToPrintableChanges()
+    this.listenToPrintableChanges()
   }
 
-  onToPrintableChanges(): void {
+  listenToPrintableChanges(): void {
     this.printables.controls.forEach((type, index) => {
       const printable = type.get('printable')
       if (printable) {
@@ -150,24 +146,21 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     })
   }
 
-  extractConfigurationFromForm(): Configuration {
-    const extractedConfiguration = this.configuration as Configuration
-    const issueTypeConfigurations = extractedConfiguration.issueTypes.map((typeConfig, index) => {
-      const size = (this.sizes.controls[index].get('isFullPostit') as FormControl).value ? PrintingSize.Full : PrintingSize.Third
-      let shouldPrint = true
-      const shouldPrintControl = this.printables.controls[index].get('printable')
-      if (shouldPrintControl) {
-        shouldPrint = shouldPrintControl.value as boolean
-      }
+  extractConfigurationFromForm(): Configuration | null {
+    if (!this.configuration) {
+      return null
+    } else {
+      const newIssueTypes = this.configuration.issueTypes.map((typeConfig: IssueTypeConfiguration, index: number) => {
+        const pritingSize = (this.sizes.controls[index].get('isFullPostit') as FormControl).value ? PrintingSize.Full : PrintingSize.Third
+        const toPrint = (this.printables.controls[index].get('printable') as FormControl).value as boolean
 
-      return new IssueTypeConfiguration(typeConfig.type, size, shouldPrint)
-    })
-    if (issueTypeConfigurations) {
-      extractedConfiguration.issueTypes = issueTypeConfigurations
+        return new IssueTypeConfiguration(typeConfig.type, pritingSize, toPrint)
+      })
+
+      const groupByComponents = this.groupByComponents.value as boolean
+
+      return new Configuration(this.configuration.projectKey, newIssueTypes, groupByComponents)
     }
-    extractedConfiguration.groupByComponents = this.groupByComponents.value as boolean
-
-    return extractedConfiguration
   }
 
   onSubmit(): void {
@@ -175,6 +168,15 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     if (this.configuration) {
       this.persist(this.configuration)
     }
+  }
+
+  persist(configuration: Configuration): void {
+    this.printingConfigurationService.persistConfiguration(this.boardId, configuration)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((dbConfiguration: Configuration) => {
+        this.updatePrintingConfiguration(dbConfiguration)
+        this.navigateToIssueSelection()
+      })
   }
 
   updatePrintingConfiguration(configuration: Configuration): void {
@@ -192,7 +194,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
   }
 
   navigateToIssueSelection(): void {
-    this.boardService.getBoard(this.boardId)
+    this.boardService.getBoard(this.boardId) // TODO extract redirection logic to child router-outlet with root component
     this.boardService.board.pipe(
       filter(val => val != null),
       takeUntil(this.unsubscribe)
@@ -220,15 +222,6 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
       this.updatePrintingConfiguration(this.configuration)
       this.navigateToIssueSelection()
     }
-  }
-
-  persist(configuration: Configuration): void {
-    this.printingConfigurationService.persistConfiguration(this.boardId, configuration)
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe((dbConfiguration: Configuration) => {
-        this.updatePrintingConfiguration(dbConfiguration)
-        this.navigateToIssueSelection()
-      })
   }
 
   ngOnDestroy(): void {

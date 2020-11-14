@@ -70,11 +70,13 @@ export class PrintingConfigurationService {
 
   readPersistedConfiguration(boardId: string): Observable<Configuration> {
     const configurationUrl = `board/${boardId}/settings`
+
     return this.http.get<Configuration>(environment.baseUrl + configurationUrl, httpOptions)
   }
 
-  persistConfiguration(boardId: string, configuration: Configuration): Observable<any> {
+  persistConfiguration(boardId: string, configuration: Configuration): Observable<Configuration> {
     const configurationUrl = `board/${boardId}/settings`
-    return this.http.post(environment.baseUrl + configurationUrl, configuration, httpOptions)
+
+    return this.http.post<Configuration>(environment.baseUrl + configurationUrl, configuration, httpOptions)
   }
 }

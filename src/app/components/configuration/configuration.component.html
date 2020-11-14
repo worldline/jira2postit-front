@@ -17,7 +17,7 @@
           <div class= "number-circle">1</div>
           <div>
             <span class="form-section-title">Project key</span>
-            <span class="form-section-subtitle">What types of issues are configured for your board ?</span>
+            <span class="form-section-subtitle">What types of issues are configured for your board?</span>
           </div>
         </div>
         <p class="dark-grey-text project-key-section-content">
@@ -29,7 +29,7 @@
         </p>
         <div class= "column center-self project-key-section-content">
           <div class="group">
-            <input required type="text" [(ngModel)]="projectKey" [ngModelOptions]="{standalone: true}" (change)="resetIssueTypes()" [ngClass]="{'is-invalid': submittedProjectKey && projectKey}"/>
+            <input required type="text" [(ngModel)]="projectKey" [ngModelOptions]="{standalone: true}" (change)="resetIssueTypes()"/>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Project key</label>
@@ -37,12 +37,12 @@
           <button [disabled]="!projectKey" (click)="getIssueTypes()" id="fetch">{{ submittedProjectKey ? "Synchronize with Jira" : "Fetch" }}</button>
         </div>
       </div>
-      <div *ngIf="submittedProjectKey" class= "form-section size-limited scrollbar">
+      <div *ngIf="submittedProjectKey" class="form-section size-limited scrollbar">
           <div class="form-section-header">
-            <div class= "number-circle">2</div>
+            <div class="number-circle">2</div>
             <div>
               <span class="form-section-title">Types of issues to print</span>
-              <span class="form-section-subtitle">Which types of issues should be printed ?</span>
+              <span class="form-section-subtitle">Which types of issues should be printed?</span>
             </div>
           </div>
           <div formArrayName="printables" class="dark-grey-text">
@@ -104,7 +104,7 @@
       </div>
       </div>
       <div *ngIf="submittedProjectKey" class="centered">
-          <button [disabled]='!submittedProjectKey || form.invalid ' (click)="onSubmit()">Save</button>
+          <button [disabled]='!submittedProjectKey || form.invalid' (click)="onSubmit()">Save</button>
       </div>
     </form>
   </div>
