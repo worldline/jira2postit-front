@@ -1,60 +1,50 @@
 <div class="centered">
-  <div class= "greyed">
-<h1>Let's retrieve your Jira board</h1>
-<p *ngIf="submitted && error" class="is-invalid">An error has occured, please retry</p>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="group">
-    <input
-      required
-      type="text"
-      formControlName="username"
-      [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-      (focus)="resetSubmission()"
-    />
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label [ngClass]="{'is-invalid': submitted == true && error != null}">Jira username</label>
-    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-        <div *ngIf="f.username.errors.required">Your Jira username is required</div>
-    </div>
-  </div>
-  <div class="group">
-    <input
-      required
-      type="password"
-      formControlName="password"
-      class="form-control"
-      [ngClass]="{'is-invalid': submitted && f.password.errors}"
-      (focus)="resetSubmission()"
-    />
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label [ngClass]="{'is-invalid': submitted == true && error != null}">Password</label>
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-        <div *ngIf="f.password.errors.required">Password is required</div>
-    </div>
-  </div>
-  <div class="group">
-      <input
-        required
-        type="text"
-        formControlName="boardId"
-        class="form-control"
-        (focus)="resetSubmission()"
-      />
-      <span class="highlight"></span>
-      <span class="bar" [ngClass]="{ 'is-invalid': error }"></span>
-      <label [ngClass]="{'is-invalid': submitted == true && error != null}">Board Id</label>
-      <div *ngIf="submitted && f.boardId.errors" class="invalid-feedback">
-          <div *ngIf="f.boardId.errors.required">The board id is required</div>
-          <div *ngIf="f.boardId.errors.pattern">The board id is a number</div>
+  <div class="greyed">
+    <h1>Let's retrieve your Jira board</h1>
+    <p *ngIf="submitted && error" class="is-invalid">An error has occured, please retry</p>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="group">
+        <input required type="text"
+          formControlName="username"
+          [ngClass]="{ 'is-invalid': submitted && username.errors }"
+          (focus)="resetSubmission()"
+        />
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label [ngClass]="{'is-invalid': submitted && error}">Jira username</label>
+        <div *ngIf="submitted && username.errors" class="invalid-feedback">
+          <div *ngIf="username.errors?.required">Your Jira username is required</div>
+        </div>
       </div>
-    </div>
-  <div class="centered">
-    <button>SIGN IN</button>
+      <div class="group">
+        <input required type="password"
+          formControlName="password"
+          [ngClass]="{'is-invalid': submitted && password.errors}"
+          (focus)="resetSubmission()"
+        />
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label [ngClass]="{'is-invalid': submitted && error}">Password</label>
+        <div *ngIf="submitted && password.errors" class="invalid-feedback">
+          <div *ngIf="password.errors?.required">Password is required</div>
+        </div>
+      </div>
+      <div class="group">
+        <input required type="text"
+          formControlName="boardId"
+          (focus)="resetSubmission()"
+        />
+        <span class="highlight"></span>
+        <span class="bar" [ngClass]="{'is-invalid': error}"></span>
+        <label [ngClass]="{'is-invalid': submitted && error}">Board Id</label>
+        <div *ngIf="submitted && boardId.errors" class="invalid-feedback">
+          <div *ngIf="boardId.errors?.required">The board id is required</div>
+          <div *ngIf="boardId.errors?.pattern">The board id is a number</div>
+        </div>
+      </div>
+      <div class="centered">
+        <button>SIGN IN</button>
+      </div>
+    </form>
   </div>
-</form>
 </div>
-</div>
-<!--
--->

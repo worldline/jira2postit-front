@@ -50,13 +50,12 @@ export class AppComponent implements OnInit {
     this.loginService.logout()
       .subscribe(
         resp => {
-          this.loginService.setAuthenticated(false)
           this.printingStepLink = '/login'
         }
       )
   }
 
-  authenticated(): boolean {
+  get authenticated(): boolean {
     return this.loginService.getAuthenticated()
   }
 }

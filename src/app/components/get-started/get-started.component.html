@@ -1,5 +1,5 @@
 <img
-  *ngIf="!authenticated()"
+  *ngIf="!authenticated"
   src="../../assets/signin-sign.png"
   alt="sign in here"
   class="signin"
@@ -39,7 +39,7 @@
         src="../../assets/boardIdExplanation.png"
         alt="where to find the board id in the url"
       />
-      <div *ngIf="!authenticated()" class="centered-container">
+      <div *ngIf="!authenticated" class="centered-container">
         <button routerLink="/login">Sign in</button>
       </div>
     </div>

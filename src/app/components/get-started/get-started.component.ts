@@ -13,7 +13,7 @@ export class GetStartedComponent implements OnInit {
   ngOnInit() {
   }
 
-  authenticated(): boolean {
+  get authenticated(): boolean {
     return this.loginService.getAuthenticated()
   }
 }

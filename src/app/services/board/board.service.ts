@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Board } from '../login/board';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Board } from '../login/board'
+import { BehaviorSubject } from 'rxjs'
+import { environment } from 'src/environments/environment'
 
-const headers = new HttpHeaders({'Content-Type':  'application/json'})
+const headers = new HttpHeaders({ 'Content-Type':  'application/json' })
 
 const httpOptions = {
-  headers: headers,
+  headers,
   withCredentials: true
 }
 
@@ -15,12 +15,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class BoardService {
-  boardId: string | undefined = undefined;
-  board: BehaviorSubject<Board | null> = new BehaviorSubject<Board | null>(null);
+  boardId: string | undefined = undefined
+  board: BehaviorSubject<Board | null> = new BehaviorSubject<Board | null>(null)
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getBoard(boardId: string) {
+  getBoard(boardId: string): void {
     if (boardId !== this.boardId && this.board.value === null) {
       this.boardId = boardId
       const boardUrl = `board/${boardId}`
